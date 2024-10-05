@@ -4,7 +4,6 @@ import {computed} from "vue";
 const props = defineProps({
   padding: {
     type: Number,
-    default: 3
   },
 });
 

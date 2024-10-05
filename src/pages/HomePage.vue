@@ -73,7 +73,7 @@ onMounted(() => {
               je mets mes compétences au service de projets innovants et stimulants.
             </p>
             <div class="flex lg:flex-row flex-col gap-8 items-center w-full h-full pt-6">
-              <gradient-button type-component="a" bg-color="bg-background" border-size="0.5" rounded="full">
+              <gradient-button type-component="a" bg-color="bg-background" border-size="0.5" href="/cv_antoine_andre.pdf" download="cv_antoine_andre.pdf" rounded="full">
                 Télécharger le CV
                 <iconify-icon icon="material-symbols:download" class="text-xl text-pink-500"></iconify-icon>
               </gradient-button>

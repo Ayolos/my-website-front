@@ -8,7 +8,7 @@ const props = defineProps({
 
 <template>
   <div class="flex flex-row gap-6 items-center text-xl">
-    <icon-style>
+    <icon-style :padding="3">
       <iconify-icon class="md:h-8 md:w-8 w-4 h-4 text-pink-500" :icon="props.icon"></iconify-icon>
     </icon-style>
     <div class="flex flex-col gap-1 w-max">

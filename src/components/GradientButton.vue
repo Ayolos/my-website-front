@@ -5,7 +5,9 @@ const props = defineProps({
   typeComponent: String,
   bgColor: String,
   rounded: String,
-  borderSize: String
+  borderSize: String,
+  href: String,
+  download: String
 })
 
 const roundedClass = computed(() => {
@@ -20,6 +22,7 @@ const borderSizeClass = computed(() => {
 
 <template>
   <component :is="typeComponent"
+             :href="props.href" download="download"
              :class="[roundedClass, borderSizeClass]"
              class="my-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
     <span
