@@ -1,0 +1,110 @@
+<template>
+  <div :class="cardClasses" class="border border-neutral-700 max-lg:w-full" @click="handleToggleExpand">
+    <div class="flex lg:flex-row flex-col items-center h-full relative">
+      <div class="-z-50 absolute left-0 top-0 h-20 w-56" :class="bgColor + ' rounded-full blur-3xl'" style="transform: translate3d(0, 0, 0)"></div>
+      <div class="-z-50 absolute left-0 bottom-0 h-32 w-56" :class="bgColor + ' rounded-full blur-3xl'" style="transform: translate3d(0, 0, 0)"></div>
+      <div class="-z-50 absolute right-0 top-1/2 h-48 w-20" :class="bgColor + ' rounded-full blur-3xl'" style="transform: translate3d(0, 0, 0)"></div>
+      <div class="-z-40 absolute inset-0 bg-background-light/50 backdrop-blur"></div>
+
+      <!-- Titre affiché lorsque la carte n'est pas étendue -->
+      <h2 v-if="!isExpanded && isLgScreen" class="absolute p-2 inset-0 transition-opacity text-center h-full text-2xl flex items-center justify-center duration-500">
+        {{ title }}
+      </h2>
+
+      <!-- Contenu affiché uniquement après la transition d'entrée -->
+      <transition
+          name="fade"
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @leave="leave"
+      >
+        <div v-if="isExpanded" class="flex flex-col gap-6 justify-between h-full lg:h-auto">
+          <div class="p-8 flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
+              <h2 class="text-white text-2xl">{{ title }}</h2>
+              <p class="text-sm text-gray-500">{{ description }}</p>
+            </div>
+            <a v-if="githubLink" :href="githubLink" class="flex text-pink-500 transition duration-500 ease-in-out hover:scale-105 flex-row gap-2 items-center border rounded-full w-max p-1 border-pink-500 pr-4 pl-2 py-1">
+              <iconify-icon icon="mdi:github" class="text-3xl"></iconify-icon>
+              <p>Github</p>
+            </a>
+            <div class="flex flex-row gap-4 lg:flex-nowrap flex-wrap">
+              <BadgeItem v-for="(badge, index) in badges" :key="index">{{ badge }}</BadgeItem>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { computed, defineProps, ref, onMounted } from 'vue';
+import BadgeItem from "@/components/BadgeItem.vue";
+
+// Props pour passer les données du projet
+const props = defineProps({
+  cardIndex: Number,
+  expandedCard: Number,
+  toggleExpand: Function,
+  title: String,
+  description: String,
+  badges: Array,
+  githubLink: String,
+  bgColor: String
+});
+
+// Etat pour déterminer la taille de l'écran
+const isLgScreen = ref(window.innerWidth >= 1024);
+
+// Mettre à jour la taille de l'écran en cas de redimensionnement
+const updateScreenSize = () => {
+  isLgScreen.value = window.innerWidth >= 1024;
+};
+
+// Attacher un écouteur d'événements pour suivre la taille de l'écran
+onMounted(() => {
+  window.addEventListener('resize', updateScreenSize);
+});
+
+// Calcul de la classe dynamique pour le style
+const isExpanded = computed(() => isLgScreen.value ? props.expandedCard === props.cardIndex : true); // Always expanded on smaller screens
+const cardClasses = computed(() => [
+  'z-0 shadow-2xl rounded-2xl cursor-pointer text-white transition-all duration-700 ease-in-out overflow-hidden',
+  isLgScreen.value ? (isExpanded.value ? 'flex-grow-[8]' : 'flex-grow-[1]') : 'flex-grow-[1]',
+  isLgScreen.value && props.expandedCard ? 'w-1/5' : 'w-full'
+]);
+
+// Fonction toggleExpand modifiée
+const handleToggleExpand = () => {
+  // Désactiver le système d'expand pour les petits écrans
+  if (isLgScreen.value && (props.expandedCard !== props.cardIndex || props.expandedCard === null)) {
+    props.toggleExpand(props.cardIndex);
+  }
+};
+
+// Hooks de transition
+const beforeEnter = (el) => {
+  el.style.opacity = 0; // Assure que l'élément commence invisible avant la transition
+};
+
+const enter = (el, done) => {
+  el.offsetHeight; // déclenche le reflow
+  el.style.opacity = 1; // commence à apparaître
+  done(); // termine la transition
+};
+
+const leave = (el, done) => {
+  el.style.opacity = 0; // commence à disparaître
+  setTimeout(done, 300); // durée de la transition
+};
+</script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
+</style>
