@@ -111,7 +111,7 @@ const showTemporaryStatus = (statusRef, duration = 3000) => {
 // Function to send the form data
 const envoyerMail = () => {
   isMailLoading.value = true;
-  axios.post('http://localhost:3000/envoyer-mail', {
+  axios.post('https://my-website-back.vercel.app/envoyer-mail', {
     nom: nom.value,
     prenom: prenom.value,
     email: email.value,
