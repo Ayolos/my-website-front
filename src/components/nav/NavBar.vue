@@ -23,7 +23,6 @@ const handleClickOutside = (event) => {
 
 // Watch the isMenuOpen ref and block scrolling when the menu is open
 watch(isMenuOpen, (newValue) => {
-  console.log(newValue);
   if (newValue) {
     document.body.style.overflow = "hidden"; // Disable scroll
   }else {
