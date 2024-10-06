@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import MainLayout from "@/layout/MainLayout.vue";
-import Antoine from "@/assets/photo.png";
+import Antoine from "@/assets/antoine.png";
 import KPIText from "@/components/KPIText.vue";
 import IconButton from "@/components/IconButton.vue";
 import { gsap } from 'gsap';
