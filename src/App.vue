@@ -1,8 +1,9 @@
 
 <template>
-  <transition @before-enter="beforeEnter">
+<!--  <transition @before-enter="beforeEnter">
     <router-view />
-  </transition>
+  </transition>-->
+  <router-view></router-view>
 
   <div class="fixed inset-0 grid grid-cols-5 z-50" v-if="isTransitioning">
     <div v-for="tile in tiles" :key="tile" class="tile bg-neutral-300 h-full w-full"></div>
