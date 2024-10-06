@@ -69,7 +69,7 @@
               Lille
             </template>
           </icon-text>
-          <icon-text icon="bi:linkedin">
+          <icon-text icon="mdi:linkedin">
             <template #label>
               Linkedin
             </template>

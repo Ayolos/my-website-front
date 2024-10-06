@@ -33,7 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-row justify-start sm:justify-center gap-4 items-center">
+  <div class="flex flex-col lg:flex-row justify-start sm:justify-center gap-4 items-center">
     <p ref="numberElement" class="text-6xl font-bold text-white number-animation">
       {{ props.number }}
     </p>

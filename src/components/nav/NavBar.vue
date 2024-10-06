@@ -86,10 +86,10 @@ onBeforeRouteLeave(() => {
             <nav-text size="lg" text="Accueil" path="/"></nav-text>
           </li>
           <li>
-            <nav-text size="lg" text="Resume" path="/resume"></nav-text>
+            <nav-text size="lg" text="Parcours" path="/resume"></nav-text>
           </li>
           <li>
-            <nav-text size="lg" text="Work" path="/work"></nav-text>
+            <nav-text size="lg" text="Projets" path="/work"></nav-text>
           </li>
           <li>
             <nav-text size="lg" text="Contact" path="/contact"></nav-text>

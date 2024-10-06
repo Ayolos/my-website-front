@@ -23,7 +23,7 @@ const projects = [
   {
     cardIndex: 2,
     title: "Frontend Website",
-    description: "Dans le cadre de ce second projet, j'ai développé un site web vitrine pour une entreprise du bâtiment. Comme pour Northbotanica, j'ai consolidé mes compétences en Vue.js et géré l'hébergement via CloudPanel. Cependant, ce projet m'a également permis d'implémenter un système de messagerie en utilisant Mailcow, facilitant ainsi la communication entre l'entreprise et ses clients. J'ai également optimisé le site pour le référencement avec Google Search Console.",
+    description: "Dans le cadre de ce second projet, j'ai développé un site web vitrine pour une entreprise du bâtiment. J'ai consolidé mes compétences en Vue.js et géré l'hébergement via CloudPanel. Cependant, ce projet m'a également permis d'implémenter un système de messagerie en utilisant Mailcow, facilitant ainsi la communication entre l'entreprise et ses clients. J'ai également optimisé le site pour le référencement avec Google Search Console.",
     badges: ["VueJS", "Laravel", "InertiaJS"],
     githubLink: "https://github.com/Ayolos/SiteProBatiment.git",
     bgColor: "bg-purple-500"
@@ -40,7 +40,11 @@ const projects = [
 
 <template>
 <main-layout>
-<div class="lg:py-32 py-20 w-full h-full">
+<div class="lg:py-28 py-20 w-full h-full flex flex-col gap-10 items-center">
+  <div class="flex flex-col gap-4 text-center sm:w-2/3 w-full">
+    <h1 class="text-4xl text-white">Mes projets</h1>
+    <p class="text-gray-500 text-sm">Découvrez une sélection de mes réalisations, où je mets en avant mes compétences en développement web. Chaque projet illustre ma créativité et mon souci du détail dans la conception de solutions uniques.</p>
+  </div>
   <div class="flex flex-wrap justify-center gap-4 w-full h-full">
     <ProjectCard
         v-for="project in projects"

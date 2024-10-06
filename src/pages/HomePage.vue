@@ -57,7 +57,7 @@ onMounted(() => {
 
 <template>
   <main-layout>
-    <div class="flex flex-col justify-between py-20 lg:gap-20 gap-10 h-full">
+    <div class="flex flex-col justify-between py-20 lg:gap-18 gap-10 h-full">
       <div class="flex lg:flex-row flex-col-reverse justify-between lg:gap-16 gap-10 items-center h-full">
         <div class="basis-3/5">
           <div class="flex flex-col items-center lg:items-start h-full gap-2">
@@ -117,7 +117,8 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="bg-gradient-to-r p-0.5 from-blue-500 via-purple-500 to-pink-500 justify-between bg-opacity-50 shadow-2xl rounded-3xl">
+
+      <div class="p-0.5 rounded-3xl shadow-2xl rotate-gradient-border bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 bg-background/90 justify-between items-center px-12 py-14 rounded-3xl">
           <k-p-i-text number="5" text="Années d'expérience"></k-p-i-text>
           <k-p-i-text number="6" text="Projets complétés"></k-p-i-text>
@@ -133,5 +134,22 @@ onMounted(() => {
 .neon-circle {
   filter: drop-shadow(0 0 5px #ec4899);
 
+}
+
+@keyframes rotate {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.rotate-gradient-border {
+  animation: rotate 5s ease infinite;
+  background-size: 200% 200%;
 }
 </style>
