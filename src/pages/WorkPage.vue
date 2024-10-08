@@ -68,7 +68,7 @@ const projects = [
             :badges="project.badges"
             :githubLink="project.githubLink"
             :bgColor="project.bgColor"
-            class="lg:min-w-[700px] snap-center snap-always"
+            class="snap-center snap-always"
         />
       </div>
     </div>
