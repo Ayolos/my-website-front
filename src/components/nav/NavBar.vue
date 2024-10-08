@@ -45,7 +45,7 @@ onBeforeRouteLeave(() => {
 
 
 <template>
-  <div class="nav">
+  <div class="nav lg:px-20 sm:px-10 px-4">
     <nav class="text-white flex flex-inline justify-between items-center">
       <nav-logo></nav-logo>
       <ul class="flex-row gap-7 lg:flex hidden">

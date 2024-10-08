@@ -29,7 +29,7 @@ const buttons = [
 
 <template>
   <main-layout>
-    <div class="lg:py-32 py-20">
+    <div class="lg:py-32 py-20 lg:px-20 sm:px-10 px-4">
       <list-item :buttons="buttons">
         <template #title>
           Mon CV
@@ -58,8 +58,9 @@ const buttons = [
                     ALTERNANCE CHEF DE PROJET, Ultimex
                   </template>
                   <template #lists>
-                    <li>Création d’une EMR</li>
-                    <li>Laravel NOVA</li>
+                    <li>Création d’un TMS</li>
+                    <li>Apprentissage de Laravel NOVA</li>
+                    <li>Mise en production sur un serveur dédié</li>
                   </template>
                 </list-item-card>
                 <list-item-card type="list">
@@ -71,6 +72,8 @@ const buttons = [
                   </template>
                   <template #lists>
                     <li>Analyse des performances du site web</li>
+                    <li>Surveillance des cores web vitals à l'aide de Dynatrace</li>
+                    <li>Création de dashboard Dynatrace</li>
                     <li>Intégrateur front-end</li>
                   </template>
                 </list-item-card>

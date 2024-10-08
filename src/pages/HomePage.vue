@@ -57,7 +57,7 @@ onMounted(() => {
 
 <template>
   <main-layout>
-    <div class="flex flex-col justify-between py-20 lg:gap-18 gap-10 h-full">
+    <div class="flex flex-col justify-between py-20 lg:gap-18 lg:px-20 sm:px-10 px-4 gap-10 h-full">
       <div class="flex lg:flex-row flex-col-reverse justify-between lg:gap-16 gap-10 items-center h-full">
         <div class="basis-3/5">
           <div class="flex flex-col items-center lg:items-start h-full gap-2">
