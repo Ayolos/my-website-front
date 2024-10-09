@@ -1,7 +1,7 @@
 <template>
   <div
       :class="cardClasses"
-      class="border border-neutral-700 cursor-pointer text-white transition-all duration-700 ease-in-out overflow-hidden"
+      class="relative border border-neutral-700 cursor-pointer text-white transition-all duration-700 ease-in-out overflow-hidden z-0"
       @click="handleToggleExpand"
       ref="projectCard"
   >
@@ -95,7 +95,7 @@ const isExpanded = computed(() => (isLgScreen.value ? props.expandedCard === pro
 
 // Modifier les classes pour gérer les cartes expandables dans un carrousel horizontal
 const cardClasses = computed(() => [
-  'z-0 shadow-2xl rounded-2xl transition-all duration-700 ease-in-out',
+  'shadow-2xl rounded-2xl transition-all duration-700 ease-in-out',
   isExpanded.value ? 'lg:min-w-[500px] lg:w-[500px]' : 'lg:min-w-[350px]', // largeur spécifique en fonction de l'état expandé ou non
   isLgScreen.value ? 'flex-grow' : '', // Ajustement pour garder les cartes flexibles sur grands écrans
 ]);

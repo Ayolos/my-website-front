@@ -1,6 +1,6 @@
 <template>
   <main-layout>
-    <div class="flex-col items-center py-20 lg:py-24 h-max w-full lg:px-20 sm:px-10 px-4 flex gap-10">
+    <div class="flex-col items-center py-20 lg:py-24 h-max w-full lg:px-20 sm:px-10 px-4 2xl:w-[1500px] 2xl:mx-auto flex gap-10">
       <div class="flex flex-col gap-4 text-center sm:w-2/3 w-full">
         <h1 class="text-4xl text-white">Contact</h1>
         <p class="text-gray-500 text-sm">Si vous êtes intéressé par mon profil et souhaitez discuter d'opportunités de

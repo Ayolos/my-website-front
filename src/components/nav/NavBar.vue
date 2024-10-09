@@ -45,8 +45,8 @@ onBeforeRouteLeave(() => {
 
 
 <template>
-  <div class="nav lg:px-20 sm:px-10 px-4 py-5 fixed w-full bg-background z-50">
-    <nav class="text-white flex flex-inline justify-between items-center">
+  <div class="nav sticky top-0  z-50">
+    <nav class="bg-background w-full text-white flex flex-inline justify-between items-center lg:px-20 sm:px-10 px-4 py-5 2xl:w-[1500px] 2xl:mx-auto">
       <nav-logo></nav-logo>
       <ul class="flex-row gap-7 lg:flex hidden">
         <li>
@@ -73,10 +73,10 @@ onBeforeRouteLeave(() => {
     </nav>
 
     <transition name="fade">
-      <div v-if="isMenuOpen" class="absolute inset-0 z-40 bg-black/50"></div>
+      <div v-if="isMenuOpen" class="fixed inset-0 z-40 bg-black/50"></div>
     </transition>
     <transition name="slide">
-      <div v-if="isMenuOpen" class="absolute border-l border-neutral-800 z-50 inset-y-0 right-0 w-2/3 sm:w-1/3 bg-background" @click.stop>
+      <div v-if="isMenuOpen" class="fixed inset-y-0 right-0 w-2/3 sm:w-1/3 bg-background border-l border-neutral-800 z-50 h-full min-h-screen" @click.stop>
         <div class="flex justify-center pt-32">
           <nav-logo class="text-white"></nav-logo>
         </div>
