@@ -1,13 +1,13 @@
 <template>
   <main-layout>
-    <div class="flex-col items-center h-full w-full py-20 lg:py-32 lg:px-20 sm:px-10 px-4 flex gap-10">
+    <div class="flex-col items-center py-20 lg:py-24 h-max w-full lg:px-20 sm:px-10 px-4 flex gap-10">
       <div class="flex flex-col gap-4 text-center sm:w-2/3 w-full">
         <h1 class="text-4xl text-white">Contact</h1>
         <p class="text-gray-500 text-sm">Si vous êtes intéressé par mon profil et souhaitez discuter d'opportunités de
           collaboration, n'hésitez pas à me contacter. Je serais ravi d'échanger avec vous sur mes compétences, mes
           projets et mes passions. Vous pouvez me joindre par email ou via mes réseaux sociaux ci-dessous.</p>
       </div>
-      <div class="flex lg:flex-row flex-col-reverse xl:w-3/4 w-full">
+      <div class="flex lg:flex-row flex-col-reverse h-full xl:w-3/4 w-full">
         <div class="bg-background-light w-full basis-3/5 h-full p-8 lg:rounded-l-xl max-lg:rounded-b-xl shadow-2xl">
           <form @submit.prevent="envoyerMail">
             <div class="flex flex-col gap-4">

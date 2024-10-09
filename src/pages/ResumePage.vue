@@ -29,7 +29,7 @@ const buttons = [
 
 <template>
   <main-layout>
-    <div class="lg:py-32 py-20 lg:px-20 sm:px-10 px-4">
+    <div class="py-20 lg:py-24 lg:px-20 sm:px-10 px-4">
       <list-item :buttons="buttons">
         <template #title>
           Mon CV
