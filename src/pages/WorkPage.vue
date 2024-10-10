@@ -129,51 +129,43 @@ const toggleExpand = (cardIndex) => {
 <style scoped>
 /* Transitions for going right */
 .slide-right-enter-active, .slide-right-leave-active {
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .slide-right-enter-from {
-  opacity: 0;
-  transform: translateX(100%) scale(0.90); /* Slightly scale down */
+  transform: translateX(100%); /* Entrée depuis la droite */
 }
 
 .slide-right-enter-to {
-  opacity: 1;
-  transform: translateX(0) scale(1); /* Restore scale */
+  transform: translateX(0); /* Rétablir la position */
 }
 
 .slide-right-leave-from {
-  opacity: 1;
-  transform: translateX(0) scale(1); /* Restore scale */
+  transform: translateX(0); /* Rétablir la position */
 }
 
 .slide-right-leave-to {
-  opacity: 0;
-  transform: translateX(-100%) scale(1.10); /* Slightly scale up */
+  transform: translateX(-100%); /* Sortie vers la gauche */
 }
 
 /* Transitions for going left */
 .slide-left-enter-active, .slide-left-leave-active {
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .slide-left-enter-from {
-  opacity: 0;
-  transform: translateX(-100%) scale(0.90); /* Slightly scale down */
+  transform: translateX(-100%); /* Entrée depuis la gauche */
 }
 
 .slide-left-enter-to {
-  opacity: 1;
-  transform: translateX(0) scale(1); /* Restore scale */
+  transform: translateX(0); /* Rétablir la position */
 }
 
 .slide-left-leave-from {
-  opacity: 1;
-  transform: translateX(0) scale(1); /* Restore scale */
+  transform: translateX(0); /* Rétablir la position */
 }
 
 .slide-left-leave-to {
-  opacity: 0;
-  transform: translateX(100%) scale(1.10); /* Slightly scale up */
+  transform: translateX(100%); /* Sortie vers la droite */
 }
 </style>
