@@ -1,17 +1,30 @@
 <script setup>
-import { ref } from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import MainLayout from "@/layout/MainLayout.vue";
 import ProjectCard from "@/components/slider/ProjectCard.vue";
 
 // Suivi de la carte développée
 const expandedCard = ref(1);
+const currentSlide = ref(0);
+const nbrPerSlide = computed(() => isLgScreen.value ? 2 : 1);
+const direction = ref('right'); // Propriété pour suivre la direction
+const isNextDisabled = computed(() => currentSlide.value >= Math.ceil(projects.value.length / nbrPerSlide.value) - 1);
+const isPrevDisabled = computed(() => currentSlide.value <= 0);
+const isLgScreen = ref(window.innerWidth >= 1024);
 
-const toggleExpand = (cardIndex) => {
-  expandedCard.value = expandedCard.value === cardIndex ? null : cardIndex;
+const updateScreenSize = () => {
+  isLgScreen.value = window.innerWidth >= 1024;
 };
 
-// Liste des projets
-const projects = [
+// Attacher un écouteur d'événements pour suivre la taille de l'écran
+onMounted(() => {
+  window.addEventListener('resize', updateScreenSize);
+});
+
+
+
+// Projets réactifs
+const projects = ref([
   {
     cardIndex: 1,
     title: "NorthBotanica",
@@ -43,53 +56,124 @@ const projects = [
     badges: ["VueJS", "Laravel", "Laravel nova"],
     bgColor: "bg-pink-500"
   },
-];
+  // Ajoute d'autres projets ici...
+]);
+
+const visibleCards = computed(() => {
+  const start = currentSlide.value * nbrPerSlide.value;
+  return projects.value.slice(start, start + nbrPerSlide.value);
+});
+
+// Gestion du changement de slide
+const nextSlide = () => {
+  if (currentSlide.value < Math.ceil(projects.value.length / nbrPerSlide.value) - 1) {
+    direction.value = 'right'; // Définir la direction à droite
+    currentSlide.value++;
+  }
+};
+
+const prevSlide = () => {
+  if (currentSlide.value > 0) {
+    direction.value = 'left'; // Définir la direction à gauche
+
+    currentSlide.value--;
+  }
+};
+
+const toggleExpand = (cardIndex) => {
+  expandedCard.value = cardIndex;
+};
 </script>
 
 <template>
   <main-layout>
-    <div class="lg:pt-24 pt-20 pb-10 w-full h-full flex flex-col gap-10 items-center lg:px-10 sm:px-10 px-4">
+    <div class="lg:pt-24 pt-20 pb-10 w-full flex flex-col gap-10 items-center lg:px-10 sm:px-10 px-4">
       <div class="flex flex-col gap-4 text-center sm:w-2/3 w-full">
         <h1 class="text-4xl text-white">Mes projets</h1>
-        <p class="text-gray-500 text-sm">Découvrez une sélection de mes réalisations, où je mets en avant mes compétences en développement web. Chaque projet illustre ma créativité et mon souci du détail dans la conception de solutions uniques.</p>
+        <p class="text-gray-500 text-sm">écouvrez une sélection de mes réalisations, où je mets en avant mes compétences en développement web. Chaque projet illustre ma créativité et mon souci du détail dans la conception de solutions uniques.</p>
       </div>
 
-      <!-- Ajout de scrollable en x avec overflow-x-auto -->
-      <div class="flex flex-wrap lg:flex-nowrap justify-start gap-4 w-full h-full lg:overflow-x-auto scroll-smooth snap-mandatory snap-x scrollbar-hide">
-        <!-- Assurez-vous que les cartes ne se plient pas avec flex-nowrap -->
-        <ProjectCard
-            v-for="project in projects"
-            :key="project.cardIndex"
-            :cardIndex="project.cardIndex"
-            :expandedCard="expandedCard"
-            :toggleExpand="toggleExpand"
-            :title="project.title"
-            :description="project.description"
-            :badges="project.badges"
-            :githubLink="project.githubLink"
-            :bgColor="project.bgColor"
-            class="snap-center snap-always"
-        />
+      <div class="relative h-full w-full">
+        <div class="absolute flex flex-row justify-between inset-0 mx-0 sm:-mx-5 inset-y-1/2 z-50">
+          <button @click="prevSlide" :class="!isPrevDisabled ? '' : 'invisible'">
+            <iconify-icon icon="bx:bx-chevron-left" class="text-white text-4xl bg-background border border-neutral-500 transition ease-in-out duration-300 hover:scale-110 rounded-full"></iconify-icon>
+          </button>
+          <button @click.prevent="nextSlide" :class="!isNextDisabled ? '' : 'invisible'">
+            <iconify-icon icon="bx:bx-chevron-right" class="text-white text-4xl bg-background border border-neutral-500 transition ease-in-out duration-300 hover:scale-110 rounded-full"></iconify-icon>
+          </button>
+        </div>
+
+        <div class="flex flex-row min-h-full sm:h-full h-[500px] gap-4 overflow-hidden">
+          <transition :name="direction === 'right' ? 'slide-right' : 'slide-left'" mode="out-in">
+            <div class="flex flex-row h-full gap-4 w-full" :key="currentSlide">
+              <ProjectCard
+                  v-for="project in visibleCards"
+                  :key="project.cardIndex"
+                  :cardIndex="project.cardIndex"
+                  :expandedCard="expandedCard"
+                  :toggleExpand="toggleExpand"
+                  :title="project.title"
+                  :description="project.description"
+                  :badges="project.badges"
+                  :githubLink="project.githubLink"
+                  :bgColor="project.bgColor"
+              />
+            </div>
+          </transition>
+        </div>
       </div>
     </div>
   </main-layout>
 </template>
 
 <style scoped>
-.slide-fade-enter-active {
-  transition: all 0.5s ease-out;
-}
-.slide-fade-enter-from {
-  transform: translateX(20px);
-  opacity: 0;
+/* Transitions for going right */
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
-/* Ajouter cette classe à votre fichier CSS */
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translateX(100%) scale(0.90); /* Slightly scale down */
 }
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari et Opera */
+
+.slide-right-enter-to {
+  opacity: 1;
+  transform: translateX(0) scale(1); /* Restore scale */
+}
+
+.slide-right-leave-from {
+  opacity: 1;
+  transform: translateX(0) scale(1); /* Restore scale */
+}
+
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(-100%) scale(1.10); /* Slightly scale up */
+}
+
+/* Transitions for going left */
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translateX(-100%) scale(0.90); /* Slightly scale down */
+}
+
+.slide-left-enter-to {
+  opacity: 1;
+  transform: translateX(0) scale(1); /* Restore scale */
+}
+
+.slide-left-leave-from {
+  opacity: 1;
+  transform: translateX(0) scale(1); /* Restore scale */
+}
+
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translateX(100%) scale(1.10); /* Slightly scale up */
 }
 </style>

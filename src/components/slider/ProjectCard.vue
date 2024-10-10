@@ -5,7 +5,7 @@
       @click="handleToggleExpand"
       ref="projectCard"
   >
-    <div class="flex lg:flex-row flex-col items-center h-full relative">
+    <div class="flex items-center h-full relative">
       <!-- Backgrounds -->
       <div
           class="-z-50 absolute left-0 top-0 h-20 w-56"
@@ -34,11 +34,11 @@
 
       <!-- Contenu affiché uniquement après la transition d'entrée -->
       <transition name="fade" @before-enter="beforeEnter" @enter="enter" @leave="leave">
-        <div v-if="isExpanded" class="flex flex-col gap-6 justify-between h-full lg:h-auto">
-          <div class="p-8 flex flex-col gap-8">
+        <div v-if="isExpanded" class="flex h-full flex-col gap-6 justify-between">
+          <div class="sm:p-8 p-5 flex flex-col gap-8 h-full justify-center">
             <div class="flex flex-col gap-4">
               <h2 class="text-white text-2xl">{{ title }}</h2>
-              <p class="text-sm text-gray-500">{{ description }}</p>
+              <p class="sm:text-sm text-xs text-gray-500">{{ description }}</p>
             </div>
             <a
                 v-if="githubLink"
@@ -96,7 +96,7 @@ const isExpanded = computed(() => (isLgScreen.value ? props.expandedCard === pro
 // Modifier les classes pour gérer les cartes expandables dans un carrousel horizontal
 const cardClasses = computed(() => [
   'shadow-2xl rounded-2xl transition-all duration-700 ease-in-out',
-  isExpanded.value ? 'lg:min-w-[500px] lg:w-[500px]' : 'lg:min-w-[350px]', // largeur spécifique en fonction de l'état expandé ou non
+  isExpanded.value ? 'w-full' : 'w-1/2', // largeur spécifique en fonction de l'état expandé ou non
   isLgScreen.value ? 'flex-grow' : '', // Ajustement pour garder les cartes flexibles sur grands écrans
 ]);
 
