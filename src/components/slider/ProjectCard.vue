@@ -34,11 +34,11 @@
 
       <!-- Contenu affiché uniquement après la transition d'entrée -->
       <transition name="fade" @before-enter="beforeEnter" @enter="enter" @leave="leave">
-        <div v-if="isExpanded" class="flex h-full flex-col gap-6 justify-between absolute inset-0 overflow-auto">
-          <div class="sm:p-8 p-5 flex flex-col gap-8 justify-center">
-            <div class="flex flex-col gap-4">
-              <h2 class="text-white text-2xl">{{ title }}</h2>
-              <p class="sm:text-sm text-xs text-gray-500">{{ description }}</p>
+        <div v-if="isExpanded" class="flex h-full flex-col justify-center items-center absolute inset-0 overflow-auto">
+          <div class="sm:p-8 p-5 flex flex-col gap-8 justify-center items-center">
+            <div class="flex flex-col gap-4 items-center">
+              <h2 class="text-white text-2xl text-center">{{ title }}</h2>
+              <p class="sm:text-sm text-xs text-gray-500 text-center">{{ description }}</p>
             </div>
             <a
                 v-if="githubLink"
@@ -48,7 +48,7 @@
               <iconify-icon icon="mdi:github" class="text-3xl"></iconify-icon>
               <p>Github</p>
             </a>
-            <div class="flex flex-row gap-4 lg:flex-nowrap flex-wrap">
+            <div class="flex flex-row gap-4 lg:flex-nowrap flex-wrap justify-center">
               <BadgeItem v-for="(badge, index) in badges" :key="index">{{ badge }}</BadgeItem>
             </div>
           </div>

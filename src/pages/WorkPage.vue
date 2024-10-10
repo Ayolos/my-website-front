@@ -90,7 +90,7 @@ const toggleExpand = (cardIndex) => {
     <div class="lg:pt-24 pt-20 pb-10 w-full 2xl:w-[1500px] 2xl:mx-auto flex flex-col gap-10 items-center lg:px-10 sm:px-10 px-4">
       <div class="flex flex-col gap-4 text-center sm:w-2/3 w-full">
         <h1 class="text-4xl text-white">Mes projets</h1>
-        <p class="text-gray-500 text-sm">écouvrez une sélection de mes réalisations, où je mets en avant mes compétences en développement web. Chaque projet illustre ma créativité et mon souci du détail dans la conception de solutions uniques.</p>
+        <p class="text-gray-500 text-sm">Découvrez une sélection de mes réalisations, où je mets en avant mes compétences en développement web. Chaque projet illustre ma créativité et mon souci du détail dans la conception de solutions uniques.</p>
       </div>
 
       <div class="relative h-full w-full">
