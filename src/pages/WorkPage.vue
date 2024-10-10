@@ -94,7 +94,7 @@ const toggleExpand = (cardIndex) => {
       </div>
 
       <div class="relative h-full w-full">
-        <div class="absolute flex flex-row justify-between inset-0 mx-0 sm:-mx-5 inset-y-1 z-50">
+        <div class="absolute flex flex-row justify-between inset-0 mx-0 sm:-mx-5 inset-y-1/2 h-max z-50">
           <button @click="prevSlide" :class="!isPrevDisabled ? '' : 'invisible'">
             <iconify-icon icon="bx:bx-chevron-left" class="text-white text-4xl bg-background border border-neutral-500 transition ease-in-out duration-300 hover:scale-110 rounded-full"></iconify-icon>
           </button>
