@@ -1,11 +1,11 @@
 <template>
   <div
       :class="cardClasses"
-      class="relative border border-neutral-700 cursor-pointer text-white transition-all duration-700 ease-in-out overflow-hidden z-0"
+      class="relative border h-full border-neutral-700 cursor-pointer text-white transition-all duration-700 ease-in-out overflow-hidden z-0"
       @click="handleToggleExpand"
       ref="projectCard"
   >
-    <div class="flex items-center h-full relative">
+    <div class="flex items-center h-full">
       <!-- Backgrounds -->
       <div
           class="-z-50 absolute left-0 top-0 h-20 w-56"
@@ -34,8 +34,8 @@
 
       <!-- Contenu affiché uniquement après la transition d'entrée -->
       <transition name="fade" @before-enter="beforeEnter" @enter="enter" @leave="leave">
-        <div v-if="isExpanded" class="flex h-full flex-col gap-6 justify-between">
-          <div class="sm:p-8 p-5 flex flex-col gap-8 h-full justify-center">
+        <div v-if="isExpanded" class="flex h-full flex-col gap-6 justify-between absolute inset-0 overflow-auto">
+          <div class="sm:p-8 p-5 flex flex-col gap-8 justify-center">
             <div class="flex flex-col gap-4">
               <h2 class="text-white text-2xl">{{ title }}</h2>
               <p class="sm:text-sm text-xs text-gray-500">{{ description }}</p>
@@ -95,7 +95,7 @@ const isExpanded = computed(() => (isLgScreen.value ? props.expandedCard === pro
 
 // Modifier les classes pour gérer les cartes expandables dans un carrousel horizontal
 const cardClasses = computed(() => [
-  'shadow-2xl rounded-2xl transition-all duration-700 ease-in-out',
+  'rounded-2xl transition-all duration-700 ease-in-out',
   isExpanded.value ? 'w-full' : 'w-1/2', // largeur spécifique en fonction de l'état expandé ou non
   isLgScreen.value ? 'flex-grow' : '', // Ajustement pour garder les cartes flexibles sur grands écrans
 ]);
